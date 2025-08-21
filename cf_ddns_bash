@@ -105,7 +105,7 @@ function get_public_ip() {
   fi
 
   local ip
-  if ! ip=$(curl -s --fail "$ip_service") || [ -z "$ip" ]; then
+  if ! ip=$(curl --interface eth0:1 -s --fail "$ip_service") || [ -z "$ip" ]; then
     log "ERROR" "Failed to retrieve current $ip_type IP address."
     return 1
   fi
